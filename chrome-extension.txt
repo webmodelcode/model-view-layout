@@ -1,0 +1,16 @@
+sc-model-view/
+├── manifest.json
+├── popup/
+│   ├── popup.html
+│   ├── popup.css
+│   └── popup.js
+├── background/
+│   └── background.js
+├── content/
+│   ├── content.js
+│   └── content.css
+├── icons/
+│   ├── icon16.png
+│   ├── icon48.png
+│   └── icon128.png
+└── README.md

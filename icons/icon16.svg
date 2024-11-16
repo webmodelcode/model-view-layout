@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <!-- Background circle -->
+  <circle cx="8" cy="8" r="7.5" fill="#4CAF50" />
+  
+  <!-- SC Letters -->
+  <text x="8" y="11" 
+        font-family="Arial, sans-serif" 
+        font-size="7"
+        font-weight="bold"
+        fill="white"
+        text-anchor="middle">
+    SC
+  </text>
+</svg>
