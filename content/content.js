@@ -1,4 +1,6 @@
 window.customBrodcastLayout = {
+  enableMessage: "Enable MV",
+  disableMessage: "Disable MV",
   isModelView: false,
   broadcastCointainer: undefined,
   broadcastWrapper: undefined,
@@ -66,6 +68,8 @@ setTimeout(() => {
     disableModelView,
     toggleModelView,
     toggleModelViewButton,
+    enableMessage,
+    disableMessage,
   } = window.customBrodcastLayout;
 
   const doItTry = () => {
@@ -104,26 +108,26 @@ setTimeout(() => {
     toggleModelView = () => {
       if (isModelView) {
         disableModelView();
-        toggleModelViewButton.style.backgroundColor = "red";
-        toggleModelViewButton.innerHTML = "Activar MV";
+        toggleModelViewButton.style.backgroundColor = "white";
+        toggleModelViewButton.innerHTML = enableMessage;
       } else {
         enableModelView();
-        toggleModelViewButton.style.backgroundColor = "green";
-        toggleModelViewButton.innerHTML = "Desactivar MV";
+        toggleModelViewButton.style.backgroundColor = "yellow";
+        toggleModelViewButton.innerHTML = disableMessage;
       }
       isModelView = !isModelView;
     };
 
     toggleModelViewButton = document.createElement("button");
-    toggleModelViewButton.innerHTML = "Activar MV";
+    toggleModelViewButton.innerHTML = enableMessage;
     toggleModelViewButton.style.position = "fixed";
-    toggleModelViewButton.style.top = "10px";
+    toggleModelViewButton.style.top = "7vh";
     toggleModelViewButton.style.right = "10px";
     toggleModelViewButton.style.zIndex = "9999";
     toggleModelViewButton.style.padding = "10px";
     toggleModelViewButton.style.border = "none";
-    toggleModelViewButton.style.backgroundColor = "red";
-    toggleModelViewButton.style.color = "white";
+    toggleModelViewButton.style.backgroundColor = "white";
+    toggleModelViewButton.style.color = "black";
     toggleModelViewButton.style.cursor = "pointer";
     toggleModelViewButton.style.borderRadius = "5px";
     toggleModelViewButton.style.fontWeight = "bold";
@@ -137,5 +141,6 @@ setTimeout(() => {
       document.body.appendChild(toggleModelViewButton);
       clearInterval(window.customBrocastInterval);
     }
+    // Observador de mutaciones para manejar cambios dinámicos en la página
   }, 5000);
 }, 4000);
