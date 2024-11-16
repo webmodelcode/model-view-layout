@@ -9,6 +9,7 @@ window.customBrodcastLayout = {
   header: undefined,
   statusPanel: undefined,
   toggleModelViewButton: undefined,
+  donateButton: undefined,
   enableModelView: ({
     broadcastCointainer,
     broadcastWrapper,
@@ -70,6 +71,7 @@ setTimeout(() => {
     toggleModelViewButton,
     enableMessage,
     disableMessage,
+    donateButton,
   } = window.customBrodcastLayout;
 
   const doItTry = () => {
@@ -109,10 +111,12 @@ setTimeout(() => {
       if (isModelView) {
         disableModelView();
         toggleModelViewButton.style.backgroundColor = "white";
+        toggleModelViewButton.style.color = "black";
         toggleModelViewButton.innerHTML = enableMessage;
       } else {
         enableModelView();
-        toggleModelViewButton.style.backgroundColor = "yellow";
+        toggleModelViewButton.style.backgroundColor = "purple";
+        toggleModelViewButton.style.color = "white";
         toggleModelViewButton.innerHTML = disableMessage;
       }
       isModelView = !isModelView;
@@ -121,7 +125,8 @@ setTimeout(() => {
     toggleModelViewButton = document.createElement("button");
     toggleModelViewButton.innerHTML = enableMessage;
     toggleModelViewButton.style.position = "fixed";
-    toggleModelViewButton.style.top = "7vh";
+    toggleModelViewButton.style.top = "6vh";
+    toggleModelViewButton.style.width = "10vh";
     toggleModelViewButton.style.right = "10px";
     toggleModelViewButton.style.zIndex = "9999";
     toggleModelViewButton.style.padding = "10px";
@@ -132,6 +137,23 @@ setTimeout(() => {
     toggleModelViewButton.style.borderRadius = "5px";
     toggleModelViewButton.style.fontWeight = "bold";
     toggleModelViewButton.onclick = toggleModelView;
+
+    donateButton = document.createElement("a");
+    donateButton.href = "https://buymeacoffee.com/juanleon";
+    donateButton.target = "_blank";
+    donateButton.innerHTML = "Donate";
+    donateButton.style.position = "fixed";
+    donateButton.style.top = "10vh";
+    donateButton.style.width = "10vh";
+    donateButton.style.right = "10px";
+    donateButton.style.zIndex = "9999";
+    donateButton.style.padding = "10px";
+    donateButton.style.border = "none";
+    donateButton.style.backgroundColor = "yellow";
+    donateButton.style.color = "black";
+    donateButton.style.cursor = "pointer";
+    donateButton.style.borderRadius = "5px";
+    donateButton.style.fontWeight = "bold";
   };
 
   window.customBrocastInterval = setInterval(() => {
@@ -139,6 +161,7 @@ setTimeout(() => {
     doItTry();
     if (broadcastCointainer) {
       document.body.appendChild(toggleModelViewButton);
+      document.body.appendChild(donateButton);
       clearInterval(window.customBrocastInterval);
     }
     // Observador de mutaciones para manejar cambios dinámicos en la página
