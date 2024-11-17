@@ -154,6 +154,7 @@ setTimeout(() => {
     donateButton.style.cursor = "pointer";
     donateButton.style.borderRadius = "5px";
     donateButton.style.fontWeight = "bold";
+    donateButton.style.textAlign = "center";
   };
 
   window.customBrocastInterval = setInterval(() => {

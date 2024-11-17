@@ -35,3 +35,7 @@ donate:hover {
   transition: all 800ms;
   text-align: center;
 }
+
+.donate img {
+  filter: invert(1);
+}
