@@ -10,6 +10,7 @@ window.customBrodcastLayout = {
   statusPanel: undefined,
   toggleModelViewButton: undefined,
   donateButton: undefined,
+  headerMiddle: undefined,
   enableModelView: ({
     broadcastCointainer,
     broadcastWrapper,
@@ -72,6 +73,7 @@ setTimeout(() => {
     enableMessage,
     disableMessage,
     donateButton,
+    headerMiddle,
   } = window.customBrodcastLayout;
 
   const doItTry = () => {
@@ -88,15 +90,16 @@ setTimeout(() => {
     header = document.getElementsByClassName(
       "view-cam-header__goal-wrapper"
     )[0];
-    statusPanel =
-      '<div id="alt-panel" class="external player-panel-status" style=" background: transparent; width: 160px;"><div class="player-panel-status-main" style="background: transparent;"><div class="player-panel-status-left"><div class="player-panel-status-connection"><div class="indicator live"></div><span>Live</span><span class="badge good" id="goodToolTip">Buena</span></div><div class="player-panel-status-label-wrapper"><span><span class="player-panel-status-label">Estado:</span>Público</span></div></div><div class="player-panel-status__more-button-container"><button type="button" aria-label="player menu" class="player-panel-status__more-button"><svg class="icon icon-menu-mobile"><use xlink:href="#icons-menu-mobile"></use></svg></button><div class="bottom-left dropdown-wrapper mobile-bottom-left player-panel-status__dropdown"></div></div></div></div>';
+    statusPanel = document.getElementsByClassName("player-panel-status")[0];
+    headerMiddle = document.getElementsByClassName("header-middle")[0];
 
     enableModelView = () => {
       broadcastCointainer.style.flexDirection = "column-reverse";
       broadcastWrapper.style.display = "none";
       extSwitch.style.display = "none";
       memberList.style.height = "70vh";
-      header.insertAdjacentHTML("beforebegin", statusPanel);
+      headerMiddle.before(statusPanel);
+      statusPanel.classList.add("external");
     };
 
     disableModelView = () => {
@@ -104,7 +107,6 @@ setTimeout(() => {
       broadcastWrapper.style.display = "block";
       extSwitch.style.display = "flex";
       memberList.style.height = "100%";
-      document.getElementById("alt-panel").remove();
     };
 
     toggleModelView = () => {
