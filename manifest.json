@@ -3,8 +3,7 @@
   "name": "SC Model View",
   "version": "1.0",
   "description": "Extension for modifying webpage content",
-  "permissions": ["activeTab", "storage", "scripting"],
-  "host_permissions": ["<all_urls>"],
+  "permissions": ["scripting"],
   "action": {
     "default_popup": "popup/popup.html",
     "default_icon": {
@@ -12,9 +11,6 @@
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
     }
-  },
-  "background": {
-    "service_worker": "background/background.js"
   },
   "content_scripts": [
     {
