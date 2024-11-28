@@ -11,50 +11,9 @@ window.customBrodcastLayout = {
   toggleModelViewButton: undefined,
   donateButton: undefined,
   headerMiddle: undefined,
-  enableModelView: ({
-    broadcastCointainer,
-    broadcastWrapper,
-    extSwitch,
-    memberList,
-    header,
-    statusPanel,
-  }) => {
-    broadcastCointainer.style.flexDirection = "column-reverse";
-    broadcastWrapper.style.display = "none";
-    extSwitch.style.display = "none";
-    memberList.style.height = "70vh";
-    header.insertAdjacentHTML("beforebegin", statusPanel);
-  },
-  disableModelView: ({
-    broadcastCointainer,
-    broadcastWrapper,
-    extSwitch,
-    memberList,
-    header,
-  }) => {
-    broadcastCointainer.style.flexDirection = "row";
-    broadcastWrapper.style.display = "block";
-    extSwitch.style.display = "flex";
-    memberList.style.height = "100%";
-    document.getElementById("alt-panel").remove();
-  },
-  toggleModelView: ({
-    isModelView,
-    enableModelView,
-    disableModelView,
-    toggleModelViewButton,
-  }) => {
-    if (isModelView) {
-      disableModelView();
-      toggleModelViewButton.style.backgroundColor = "red";
-      toggleModelViewButton.innerHTML = "Activar MV";
-    } else {
-      enableModelView();
-      toggleModelViewButton.style.backgroundColor = "green";
-      toggleModelViewButton.innerHTML = "Desactivar MV";
-    }
-    isModelView = !isModelView;
-  },
+  enableModelView: () => {},
+  disableModelView: () => {},
+  toggleModelView: ({}) => {},
 };
 
 setTimeout(() => {
@@ -98,8 +57,10 @@ setTimeout(() => {
       broadcastWrapper.style.display = "none";
       extSwitch.style.display = "none";
       memberList.style.height = "70vh";
-      headerMiddle.before(statusPanel);
-      statusPanel.classList.add("external");
+      if (statusPanel) {
+        statusPanel.classList.add("external");
+        headerMiddle.before(statusPanel);
+      }
     };
 
     disableModelView = () => {
