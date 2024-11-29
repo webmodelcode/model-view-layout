@@ -58,7 +58,7 @@ setTimeout(() => {
       extSwitch.style.display = "none";
       memberList.style.height = "70vh";
       if (statusPanel) {
-        statusPanel.classList.add("external");
+        statusPanel.classList.add("custom-ext");
         headerMiddle.before(statusPanel);
       }
     };
