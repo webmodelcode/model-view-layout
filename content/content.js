@@ -121,9 +121,16 @@ setTimeout(() => {
   };
 
   window.customBrocastInterval = setInterval(() => {
-    console.log("interval try");
+    const checkCondition =
+      broadcastCointainer &&
+      broadcastWrapper &&
+      memberList &&
+      extSwitch &&
+      header &&
+      statusPanel &&
+      headerMiddle;
     doItTry();
-    if (broadcastCointainer) {
+    if (checkCondition) {
       document.body.appendChild(toggleModelViewButton);
       document.body.appendChild(donateButton);
       clearInterval(window.customBrocastInterval);
