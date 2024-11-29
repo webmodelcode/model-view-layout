@@ -8,6 +8,7 @@ window.customBrodcastLayout = {
   extSwitch: undefined,
   header: undefined,
   statusPanel: undefined,
+  floatDiv: undefined,
   toggleModelViewButton: undefined,
   donateButton: undefined,
   headerMiddle: undefined,
@@ -33,6 +34,7 @@ setTimeout(() => {
     disableMessage,
     donateButton,
     headerMiddle,
+    floatDiv,
   } = window.customBrodcastLayout;
 
   const doItTry = () => {
@@ -85,13 +87,18 @@ setTimeout(() => {
       isModelView = !isModelView;
     };
 
+    floatDiv = document.createElement("div");
+    floatDiv.classList.add("float-div-container");
+
+    window.makeElementFloating(floatDiv);
+
     toggleModelViewButton = document.createElement("button");
     toggleModelViewButton.innerHTML = enableMessage;
-    toggleModelViewButton.style.position = "fixed";
-    toggleModelViewButton.style.top = "6vh";
+    // toggleModelViewButton.style.position = "fixed";
+    // toggleModelViewButton.style.top = "6vh";
     toggleModelViewButton.style.width = "10vh";
-    toggleModelViewButton.style.right = "10px";
-    toggleModelViewButton.style.zIndex = "9999";
+    // toggleModelViewButton.style.right = "10px";
+    // toggleModelViewButton.style.zIndex = "9999";
     toggleModelViewButton.style.padding = "10px";
     toggleModelViewButton.style.border = "none";
     toggleModelViewButton.style.backgroundColor = "white";
@@ -105,11 +112,11 @@ setTimeout(() => {
     donateButton.href = "https://buymeacoffee.com/juanleon";
     donateButton.target = "_blank";
     donateButton.innerHTML = "Donate";
-    donateButton.style.position = "fixed";
-    donateButton.style.top = "10vh";
+    // donateButton.style.position = "fixed";
+    // donateButton.style.top = "10vh";
     donateButton.style.width = "10vh";
-    donateButton.style.right = "10px";
-    donateButton.style.zIndex = "9999";
+    // donateButton.style.right = "10px";
+    // donateButton.style.zIndex = "9999";
     donateButton.style.padding = "10px";
     donateButton.style.border = "none";
     donateButton.style.backgroundColor = "yellow";
@@ -118,6 +125,11 @@ setTimeout(() => {
     donateButton.style.borderRadius = "5px";
     donateButton.style.fontWeight = "bold";
     donateButton.style.textAlign = "center";
+
+    floatDiv.appendChild(toggleModelViewButton);
+    floatDiv.appendChild(donateButton);
+
+    floatDiv.addEventListener("click", (event) => {});
   };
 
   window.customBrocastInterval = setInterval(() => {
@@ -131,10 +143,10 @@ setTimeout(() => {
       headerMiddle;
     doItTry();
     if (checkCondition) {
-      document.body.appendChild(toggleModelViewButton);
-      document.body.appendChild(donateButton);
+      document.body.appendChild(floatDiv);
+      // document.body.appendChild(donateButton);
       clearInterval(window.customBrocastInterval);
     }
     // Observador de mutaciones para manejar cambios dinámicos en la página
-  }, 5000);
+  }, 1000);
 }, 4000);
