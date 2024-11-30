@@ -1,4 +1,4 @@
-.external.player-panel-status.custom-ext {
+.player-panel-status.custom-ext {
   background: transparent !important;
   width: 160px !important;
 }
@@ -26,11 +26,43 @@
 }
 
 .float-div-container {
-  transition: "all 0.1s ease";
   position: fixed;
   top: 10vh;
-  right: 3vw;
-  z-index: 9999;
-  background: rgba(255, 255, 255, 1);
+  left: 80vw;
   padding: 1rem;
+  background: rgba(255, 255, 255, 0.5);
+  transition: "all 0.1s ease";
+  cursor: pointer;
+  z-index: 9999;
+  border-radius: 0.3rem;
+  user-select: none;
+}
+
+.model-view-button {
+  width: 10vh;
+  padding: 0.5rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.3rem;
+  font-weight: bold;
+  display: block;
+}
+
+.toggle {
+  background-color: white;
+  margin-bottom: 0.5rem;
+}
+
+.toggle:hover {
+  text-decoration: underline;
+}
+
+.donate {
+  color: black;
+  background: yellow;
+  text-align: center;
+}
+
+.donate:hover {
+  color: black;
 }
