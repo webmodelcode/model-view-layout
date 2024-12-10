@@ -14,7 +14,7 @@ window.customBrodcastLayout = {
   headerMiddle: undefined,
   enableModelView: () => {},
   disableModelView: () => {},
-  toggleModelView: ({}) => {},
+  toggleModelView: () => {},
 };
 
 setTimeout(() => {
