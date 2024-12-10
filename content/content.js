@@ -12,6 +12,7 @@ window.customBrodcastLayout = {
   toggleModelViewButton: undefined,
   donateButton: undefined,
   headerMiddle: undefined,
+  errorNode: undefined,
   enableModelView: () => {},
   disableModelView: () => {},
   toggleModelView: () => {},
@@ -35,9 +36,11 @@ setTimeout(() => {
     donateButton,
     headerMiddle,
     floatDiv,
+    errorNode,
   } = window.customBrodcastLayout;
 
   const doItTry = () => {
+    errorNode = document.getElementsByClassName("main-layout-main-content");
     broadcastCointainer = document.getElementsByClassName(
       "BroadcastContainer__main#ka"
     )[0];
@@ -111,6 +114,9 @@ setTimeout(() => {
     floatDiv.appendChild(donateButton);
 
     floatDiv.addEventListener("click", (event) => {});
+
+    // if (errorNode)
+    // window.domErrorObserver.observe(errorNode, window.domErrorObserverConfig);
   };
 
   window.customBrocastInterval = setInterval(() => {
@@ -121,7 +127,8 @@ setTimeout(() => {
       extSwitch &&
       header &&
       statusPanel &&
-      headerMiddle;
+      headerMiddle &&
+      errorNode;
     doItTry();
     if (checkCondition) {
       document.body.appendChild(floatDiv);
