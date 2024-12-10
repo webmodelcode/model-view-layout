@@ -16,7 +16,7 @@
     {
       "matches": ["https://es.stripchat.com/*"],
       "css": ["content/content.css"],
-      "js": ["content/content.js"],
+      "js": ["content/content.js", "content/float-button-script.js"],
       "run_at": "document_end"
     }
   ],

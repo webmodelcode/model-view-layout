@@ -1,0 +1,15 @@
+*{
+  margin:0;
+  padding 0;
+}
+
+
+.my-div {
+  width: 200px;
+  height: 200px;
+  background: red;
+  position: fixed;
+  top: 0;
+  right: 0;
+  color: white;
+}
