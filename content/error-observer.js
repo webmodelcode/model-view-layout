@@ -33,14 +33,6 @@ window.domErrorObserverConfig = {
   characterDataOldValue: true, // guardar valor anterior del texto
 };
 
-// 3. Comenzar a observar un elemento
-// const targetNode = document.querySelector("#elemento-a-observar");
-
-// window.domErrorObserver.observe(targetNode, window.domErrorObserverConfig);
-
-// 4. Detener la observación cuando ya no sea necesaria
-// window.domErrorObserver.disconnect();
-
 const isErrorNode = (node) => {
   return node.innerHTML.toLocaleLowerCase().includes("loadableerrorboundary");
 };
