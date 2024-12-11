@@ -37,7 +37,6 @@ setTimeout(() => {
     headerMiddle,
     floatDiv,
     errorNode,
-    statusPanel,
   } = window.customBrodcastLayout;
 
   const doItTry = () => {
@@ -116,11 +115,6 @@ setTimeout(() => {
     } catch (error) {
       return;
     }
-
-    if (errorNode && !window.domErrorObserverStarted) {
-      window.domErrorObserverStarted = true;
-      window.domObserver.observe(errorNode, window.domObserverConfig);
-    }
   };
 
   window.customBrocastInterval = setInterval(() => {
@@ -134,6 +128,10 @@ setTimeout(() => {
       errorNode;
     doItTry();
     if (checkCondition) {
+      if (errorNode && !window.domErrorObserverStarted) {
+        window.domErrorObserverStarted = true;
+        window.domObserver.observe(errorNode, window.domObserverConfig);
+      }
       document.body.appendChild(floatDiv);
       clearInterval(window.customBrocastInterval);
     }
@@ -156,9 +154,13 @@ const createCustomStatusPanel = () => {
   statusPanelIndicator.id = "custom-status-panel-indicator";
 
   const statusPanelText = document.createElement("p");
-  statusPanelText.textContent = document.getElementsByClassName(
-    "player-panel-status-connection"
-  )[0].childNodes[1].textContent;
+  try {
+    statusPanelText.textContent = document.getElementsByClassName(
+      "player-panel-status-connection"
+    )[0].childNodes[1].textContent;
+  } catch (error) {
+    return;
+  }
   statusPanelText.id = "status-panel-text";
 
   statusPanelText.style.display = "inline-block";
