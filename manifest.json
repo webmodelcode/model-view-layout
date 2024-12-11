@@ -19,7 +19,7 @@
       "js": [
         "content/content.js",
         "content/float-button-script.js",
-        "content/error-observer.js"
+        "content/dom-observer.js"
       ],
       "run_at": "document_end"
     }

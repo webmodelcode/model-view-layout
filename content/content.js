@@ -7,12 +7,13 @@ window.customBrodcastLayout = {
   memberList: undefined,
   extSwitch: undefined,
   header: undefined,
-  statusPanel: undefined,
   floatDiv: undefined,
   toggleModelViewButton: undefined,
+  statusPanel: undefined,
   donateButton: undefined,
   headerMiddle: undefined,
   errorNode: undefined,
+  statusPanelText: undefined,
   enableModelView: () => {},
   disableModelView: () => {},
   toggleModelView: () => {},
@@ -26,7 +27,6 @@ setTimeout(() => {
     memberList,
     extSwitch,
     header,
-    statusPanel,
     enableModelView,
     disableModelView,
     toggleModelView,
@@ -37,6 +37,7 @@ setTimeout(() => {
     headerMiddle,
     floatDiv,
     errorNode,
+    statusPanel,
   } = window.customBrodcastLayout;
 
   const doItTry = () => {
@@ -54,7 +55,7 @@ setTimeout(() => {
     header = document.getElementsByClassName(
       "view-cam-header__goal-wrapper"
     )[0];
-    statusPanel = document.getElementsByClassName("player-panel-status")[0];
+
     headerMiddle = document.getElementsByClassName("header-middle")[0];
 
     enableModelView = () => {
@@ -62,10 +63,6 @@ setTimeout(() => {
       broadcastWrapper.style.display = "none";
       extSwitch.style.display = "none";
       memberList.style.height = "70vh";
-      if (statusPanel) {
-        statusPanel.classList.add("custom-ext");
-        headerMiddle.before(statusPanel);
-      }
     };
 
     disableModelView = () => {
@@ -110,12 +107,19 @@ setTimeout(() => {
     donateButton.target = "_blank";
     donateButton.innerHTML = "Donate";
 
-    floatDiv.appendChild(toggleModelViewButton);
-    floatDiv.appendChild(donateButton);
+    createCustomStatusPanel();
 
-    if (errorNode && !window.domErrorObserverStart) {
-      window.domErrorObserverStart = true;
-      window.domErrorObserver.observe(errorNode, window.domErrorObserverConfig);
+    try {
+      floatDiv.appendChild(window.statusPanel);
+      floatDiv.appendChild(toggleModelViewButton);
+      floatDiv.appendChild(donateButton);
+    } catch (error) {
+      return;
+    }
+
+    if (errorNode && !window.domErrorObserverStarted) {
+      window.domErrorObserverStarted = true;
+      window.domObserver.observe(errorNode, window.domObserverConfig);
     }
   };
 
@@ -126,14 +130,42 @@ setTimeout(() => {
       memberList &&
       extSwitch &&
       header &&
-      statusPanel &&
       headerMiddle &&
       errorNode;
     doItTry();
     if (checkCondition) {
       document.body.appendChild(floatDiv);
-      statusPanel.classList.remove("custom-ext");
       clearInterval(window.customBrocastInterval);
     }
   }, 1000);
 }, 4000);
+
+const createCustomStatusPanel = () => {
+  window.statusPanel = document.createElement("div");
+  statusPanel.classList.add("custom-status-panel");
+
+  const statusPanelTittleText = document.createElement("p");
+  statusPanelTittleText.textContent = "Room Status:";
+
+  const divider = document.createElement("hr");
+  divider.classList.add("custom-status-panel-divider");
+
+  const statusPanelIndicator = document.createElement("div");
+  statusPanelIndicator.classList.add("custom-status-panel");
+  statusPanelIndicator.classList.add("indicator");
+  statusPanelIndicator.id = "custom-status-panel-indicator";
+
+  const statusPanelText = document.createElement("p");
+  statusPanelText.textContent = document.getElementsByClassName(
+    "player-panel-status-connection"
+  )[0].childNodes[1].textContent;
+  statusPanelText.id = "status-panel-text";
+
+  statusPanelText.style.display = "inline-block";
+  statusPanelText.style.textTransform = "uppercase";
+
+  window.statusPanel.appendChild(statusPanelTittleText);
+  window.statusPanel.appendChild(divider);
+  window.statusPanel.appendChild(statusPanelIndicator);
+  window.statusPanel.appendChild(statusPanelText);
+};

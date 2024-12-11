@@ -21,7 +21,6 @@ window.MakeElementFloating = class {
     function shiftProperties() {
       ref.elm.style.position = "absolute";
       ref.elm.style.zIndex = ref.zIndex;
-      // document.body.append(ref.elm);
     }
 
     function onTouchmove(e) {
