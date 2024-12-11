@@ -57,24 +57,24 @@ window.domObserver = new MutationObserver((mutations) => {
 
       // Nodos eliminados
       mutation.removedNodes.forEach((node) => {
-        console.log("Nodo eliminado:", node);
+        //code para manejar el evento de eliminación del nodo
       });
     }
 
     if (mutation.type === "attributes") {
-      console.log("Atributo modificado:", mutation.attributeName);
+      //code para manejar el evento de cambio de atributo
     }
   });
 });
 
 // 2. Configurar las opciones de observación
 window.domObserverConfig = {
-  attributes: true, // observar cambios en atributos
+  attributes: false, // observar cambios en atributos
   childList: true, // observar cambios en hijos directos
   subtree: true, // observar cambios en todo el subárbol
-  characterData: true, // observar cambios en el contenido de texto
-  attributeOldValue: true, // guardar valor anterior del atributo
-  characterDataOldValue: true, // guardar valor anterior del texto
+  characterData: false, // observar cambios en el contenido de texto
+  attributeOldValue: false, // guardar valor anterior del atributo
+  characterDataOldValue: false, // guardar valor anterior del texto
 };
 
 const isErrorNode = (node) => {
