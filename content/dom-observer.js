@@ -40,7 +40,10 @@ window.domObserver = new MutationObserver((mutations) => {
           document.getElementById(
             "status-panel-text"
           ).textContent = `${node.textContent}`;
-          if (node.textContent.toLocaleLowerCase() === "online") {
+          if (
+            node.textContent.toLocaleLowerCase() === "online" ||
+            node.textContent.toLocaleLowerCase() === "live"
+          ) {
             document
               .getElementById("custom-status-panel-indicator")
               .classList.add("live");

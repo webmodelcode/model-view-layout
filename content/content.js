@@ -139,6 +139,15 @@ setTimeout(() => {
 }, 4000);
 
 const createCustomStatusPanel = () => {
+  let originalStatusPanelText;
+  try {
+    originalStatusPanelText = document.getElementsByClassName(
+      "player-panel-status-connection"
+    )[0].childNodes[1].textContent;
+  } catch (error) {
+    return;
+  }
+
   window.statusPanel = document.createElement("div");
   statusPanel.classList.add("custom-status-panel");
 
@@ -152,17 +161,13 @@ const createCustomStatusPanel = () => {
   statusPanelIndicator.classList.add("custom-status-panel");
   statusPanelIndicator.classList.add("indicator");
   statusPanelIndicator.id = "custom-status-panel-indicator";
+  if (originalStatusPanelText.toLocaleLowerCase() === "live") {
+    statusPanelIndicator.classList.add("live");
+  }
 
   const statusPanelText = document.createElement("p");
-  try {
-    statusPanelText.textContent = document.getElementsByClassName(
-      "player-panel-status-connection"
-    )[0].childNodes[1].textContent;
-  } catch (error) {
-    return;
-  }
+  statusPanelText.textContent = originalStatusPanelText;
   statusPanelText.id = "status-panel-text";
-
   statusPanelText.style.display = "inline-block";
   statusPanelText.style.textTransform = "uppercase";
 
