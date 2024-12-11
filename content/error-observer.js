@@ -7,13 +7,8 @@ window.domErrorObserver = new MutationObserver((mutations) => {
     if (mutation.type === "childList") {
       // Nodos añadidos
       mutation.addedNodes.forEach((node) => {
-        console.log("Nodo añadido:", node);
-        if (
-          node.innerHTML
-            .toLocaleLowerCase()
-            .includes("loadableerrorboundary#jc")
-        )
-          location.reload();
+        let isError = isErrorNode(node);
+        if (isError) location.reload();
       });
 
       // Nodos eliminados
@@ -45,3 +40,7 @@ window.domErrorObserverConfig = {
 
 // 4. Detener la observación cuando ya no sea necesaria
 // window.domErrorObserver.disconnect();
+
+const isErrorNode = (node) => {
+  return node.innerHTML.toLocaleLowerCase().includes("loadableerrorboundary");
+};

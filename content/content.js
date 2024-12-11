@@ -40,7 +40,7 @@ setTimeout(() => {
   } = window.customBrodcastLayout;
 
   const doItTry = () => {
-    errorNode = document.getElementsByClassName("main-layout-main-content");
+    errorNode = document.getElementsByClassName("main-layout-main-content")[0];
     broadcastCointainer = document.getElementsByClassName(
       "BroadcastContainer__main#ka"
     )[0];
@@ -113,10 +113,10 @@ setTimeout(() => {
     floatDiv.appendChild(toggleModelViewButton);
     floatDiv.appendChild(donateButton);
 
-    floatDiv.addEventListener("click", (event) => {});
-
-    // if (errorNode)
-    // window.domErrorObserver.observe(errorNode, window.domErrorObserverConfig);
+    if (errorNode && !window.domErrorObserverStart) {
+      window.domErrorObserverStart = true;
+      window.domErrorObserver.observe(errorNode, window.domErrorObserverConfig);
+    }
   };
 
   window.customBrocastInterval = setInterval(() => {
