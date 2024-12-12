@@ -113,6 +113,7 @@ setTimeout(() => {
       floatDiv.appendChild(toggleModelViewButton);
       floatDiv.appendChild(donateButton);
     } catch (error) {
+      errorNode = false;
       return;
     }
   };
