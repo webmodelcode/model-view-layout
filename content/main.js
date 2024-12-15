@@ -1,0 +1,3 @@
+(() => {
+  console.log("auto invocada");
+})();
