@@ -1,4 +1,4 @@
 export const strings = {
-  enableMessage: "Enable MV",
-  disableMessage: "Disable MV",
+  enableText: "Enable MV",
+  disableText: "Disable MV",
 };
