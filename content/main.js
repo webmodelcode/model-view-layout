@@ -1,3 +1,3 @@
-(() => {
-  console.log("auto invocada");
-})();
+import { testExport } from "./utils/test.js";
+
+testExport();

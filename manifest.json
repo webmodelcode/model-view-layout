@@ -16,13 +16,14 @@
     {
       "matches": ["https://es.stripchat.com/*"],
       "css": ["content/content.css"],
-      "js": [
-        "content/main.js",
-        "content/content.js",
-        "content/float-button-script.js",
-        "content/utils/dom-observer/dom-observer.js"
-      ],
+      "js": ["content/load-ext-scripts.js"],
       "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "matches": ["https://es.stripchat.com/*"],
+      "resources": ["content/*.js"]
     }
   ],
   "icons": {
