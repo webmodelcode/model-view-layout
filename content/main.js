@@ -1,3 +1,5 @@
+import { CustomModelMenuView } from "./custom-model-menu/view/custom-model-menu.view.js";
+
 import {
   getScBroadcastContainer,
   getScBroadcastWrapper,
@@ -16,3 +18,5 @@ console.log(
   getScExtSwitch,
   getScMemberList
 );
+
+const customModelMenuView = new CustomModelMenuView();
