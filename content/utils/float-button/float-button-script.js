@@ -1,4 +1,4 @@
-window.MakeElementFloating = class {
+export class MakeElementFloating {
   shiftX;
   shiftY;
 
@@ -13,7 +13,7 @@ window.MakeElementFloating = class {
   }
 
   mainMovement(event, ref) {
-    function initPosition() {
+    function initPosition(event) {
       ref.shiftX = event.clientX - ref.elm.getBoundingClientRect().left;
       ref.shiftY = event.clientY - ref.elm.getBoundingClientRect().top;
     }
@@ -48,4 +48,4 @@ window.MakeElementFloating = class {
       ref.mainMovement(e, ref);
     });
   }
-};
+}
