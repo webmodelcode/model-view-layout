@@ -1,3 +1,5 @@
+import { strings } from "../../utils/strings";
+
 // main floating container
 const createMainFloatContainer = () => {
   const floatDiv = document.createElement("div");
@@ -10,7 +12,7 @@ const createToggleButton = () => {
   const toggleModelViewButton = document.createElement("button");
   toggleModelViewButton.classList.add("model-view-button");
   toggleModelViewButton.classList.add("toggle");
-  toggleModelViewButton.innerHTML = enableMessage;
+  toggleModelViewButton.innerHTML = strings.enableText;
 
   return toggleModelViewButton;
 };
