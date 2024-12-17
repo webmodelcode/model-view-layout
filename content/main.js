@@ -1,22 +1,25 @@
+"use strict";
+
 import { CustomModelMenuView } from "./custom-model-menu/view/custom-model-menu.view.js";
+import { CustomStatusPanelController } from "./custom-model-menu/controller/custom-status-panel.controller.js";
+import { CustomToggleModelViewController } from "./custom-model-menu/controller/custom-toggle-model-view.controller.js";
 
 import {
-  getScBroadcastContainer,
-  getScBroadcastWrapper,
-  getScErrorNode,
-  getScExtSwitch,
-  getScMemberList,
+  getScStreamingStatus,
+  checkAvaliableElements,
 } from "./sc-components/sc-components-getters.js";
-import { strings } from "./utils/strings.js";
 
-console.log({ strings });
+const customModelMenuView = CustomModelMenuView();
+const customStatusPanel = customModelMenuView.getCustomStatusPanel();
+const customStatusPanelController = CustomStatusPanelController({
+  customStatusPanel,
+  getScStreamingStatus,
+});
+const customToggleModelViewController = CustomToggleModelViewController({
+  customModelMenuView,
+  customStatusPanelController,
+  checkAvaliableElements,
+});
 
-console.log(
-  getScBroadcastContainer,
-  getScBroadcastWrapper,
-  getScErrorNode,
-  getScExtSwitch,
-  getScMemberList
-);
-
-const customModelMenuView = new CustomModelMenuView();
+document.body.appendChild(customModelMenuView.create());
+customToggleModelViewController.setButtonEventClick();
