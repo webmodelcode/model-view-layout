@@ -56,13 +56,22 @@ export const getScExtSwitch = () => {
 
 export const getScStreamingStatus = () => {
   try {
-    return (
-      document
-        .getElementsByClassName("player-panel-status-connection")
-        .item(0)
-        .childNodes[1].textContent.toLocaleLowerCase() === "connected"
-    );
+    return document
+      .getElementsByClassName("player-panel-status-connection")
+      .item(0)
+      .childNodes[1].textContent.toLocaleLowerCase();
   } catch (error) {
-    return false;
+    return null;
   }
+};
+
+export const checkAvaliableElements = () => {
+  return (
+    getScErrorNode() &&
+    getScBroadcastContainer() &&
+    getScBroadcastWrapper() &&
+    getScMemberList() &&
+    getScExtSwitch() &&
+    getScStreamingStatus()
+  );
 };
