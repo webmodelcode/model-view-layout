@@ -3,6 +3,7 @@
 import { CustomModelMenuView } from "./custom-model-menu/view/custom-model-menu.view.js";
 import { CustomStatusPanelController } from "./custom-model-menu/controller/custom-status-panel.controller.js";
 import { CustomToggleModelViewController } from "./custom-model-menu/controller/custom-toggle-model-view.controller.js";
+import { MakeElementFloating } from "./utils/float-button/float-button-script.js";
 
 import {
   getScErrorNode,
@@ -32,3 +33,10 @@ const customToggleModelViewController = CustomToggleModelViewController({
 
 document.body.appendChild(customModelMenuView.create());
 customToggleModelViewController.setButtonEventClick();
+
+const doFloat = new MakeElementFloating(
+  customModelMenuView.getFloatDiv(),
+  9999,
+  true
+);
+doFloat.goMoveIt(doFloat);
