@@ -1,4 +1,4 @@
-import { strings } from "../../utils/strings";
+import { strings } from "../../utils/strings.js";
 
 // main floating container
 const createMainFloatContainer = () => {
@@ -13,6 +13,7 @@ const createToggleButton = () => {
   toggleModelViewButton.classList.add("model-view-button");
   toggleModelViewButton.classList.add("toggle");
   toggleModelViewButton.innerHTML = strings.enableText;
+  // toggleModelViewButton.disabled = true;//TODO: creck activate and disable the button
 
   return toggleModelViewButton;
 };
@@ -50,7 +51,7 @@ const createCustomStatusPanel = () => {
   statusPanelIndicator.id = "custom-status-panel-indicator";
 
   const statusPanelText = document.createElement("p");
-  statusPanelText.textContent = originalStatusPanelText;
+  statusPanelText.textContent = "loading...";
   statusPanelText.id = "status-panel-text";
   statusPanelText.style.display = "inline-block";
   statusPanelText.style.textTransform = "uppercase";
@@ -60,7 +61,7 @@ const createCustomStatusPanel = () => {
   customStatusPanel.appendChild(statusPanelIndicator);
   customStatusPanel.appendChild(statusPanelText);
 
-  return customStatusPanel;
+  return { customStatusPanel, statusPanelIndicator, statusPanelText };
 };
 
 export const CustomModelMenuView = () => {
@@ -70,9 +71,10 @@ export const CustomModelMenuView = () => {
   const donateButton = createDonateButton();
 
   const create = () => {
-    floatDiv.appendChild(customStatusPanel);
+    floatDiv.appendChild(customStatusPanel.customStatusPanel);
     floatDiv.appendChild(toggleModelViewButton);
     floatDiv.appendChild(donateButton);
+    return floatDiv;
   };
 
   const getFloatDiv = () => floatDiv;
