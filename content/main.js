@@ -5,6 +5,11 @@ import { CustomStatusPanelController } from "./custom-model-menu/controller/cust
 import { CustomToggleModelViewController } from "./custom-model-menu/controller/custom-toggle-model-view.controller.js";
 
 import {
+  getScErrorNode,
+  getScBroadcastContainer,
+  getScBroadcastWrapper,
+  getScMemberList,
+  getScExtSwitch,
   getScStreamingStatus,
   checkAvaliableElements,
 } from "./sc-components/sc-components-getters.js";
@@ -18,6 +23,10 @@ const customStatusPanelController = CustomStatusPanelController({
 const customToggleModelViewController = CustomToggleModelViewController({
   customModelMenuView,
   customStatusPanelController,
+  getScBroadcastContainer,
+  getScBroadcastWrapper,
+  getScMemberList,
+  getScExtSwitch,
   checkAvaliableElements,
 });
 
