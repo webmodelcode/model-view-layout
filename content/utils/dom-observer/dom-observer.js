@@ -36,10 +36,13 @@ export const domObserver = new MutationObserver((mutations) => {
           isStatusTextNodeHidden ||
           isStatusTextElementHidden
         ) {
-          console.log("Tu Estado de conexión es: ", node.textContent);
-          document.getElementById(
-            "status-panel-text"
-          ).textContent = `${node.textContent}`;
+          const avaliblesStates = ["online", "live", "offline"];
+          if (avaliblesStates.includes(node.textContent.toLocaleLowerCase())) {
+            document.getElementById(
+              "status-panel-text"
+            ).textContent = `${node.textContent}`;
+          }
+
           if (
             node.textContent.toLocaleLowerCase() === "online" ||
             node.textContent.toLocaleLowerCase() === "live"

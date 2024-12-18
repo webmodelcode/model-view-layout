@@ -9,6 +9,9 @@ export const CustomToggleModelViewController = ({
   getScMemberList,
   getScExtSwitch,
   checkAvaliableElements,
+  domObserver,
+  domObserverConfig,
+  getScErrorNode,
 }) => {
   const customToggleButton = customModelMenuView.getToggleModelViewButton();
 
@@ -23,6 +26,7 @@ export const CustomToggleModelViewController = ({
         getScExtSwitch,
         checkAvaliableElements,
       });
+      goToObserve({ getScErrorNode, domObserver, domObserverConfig });
     };
   };
 
@@ -118,4 +122,13 @@ const toggleModelView = ({
     toggleModelViewButton.innerHTML = strings.disableText;
   }
   window.isModelView = !isModelView;
+};
+
+const goToObserve = ({ getScErrorNode, domObserver, domObserverConfig }) => {
+  const domErrorObserverStarted = window.domErrorObserverStarted;
+  const errorNode = getScErrorNode();
+  if (errorNode && !domErrorObserverStarted) {
+    window.domErrorObserverStarted = true;
+    domObserver.observe(errorNode, domObserverConfig);
+  }
 };
