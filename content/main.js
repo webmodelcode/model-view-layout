@@ -43,6 +43,7 @@ const mainScript = () => {
     if (checkAvaliableElements()) {
       clearInterval(addElementInterval);
       document.body.appendChild(customModelMenuView.create());
+      customStatusPanelController.setText();
       customToggleModelViewController.setButtonEventClick();
       const doFloat = new MakeElementFloating(
         customModelMenuView.getFloatDiv(),
