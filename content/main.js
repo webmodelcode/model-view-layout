@@ -39,15 +39,19 @@ const mainScript = () => {
     getScErrorNode,
   });
 
-  document.body.appendChild(customModelMenuView.create());
-  customToggleModelViewController.setButtonEventClick();
-
-  const doFloat = new MakeElementFloating(
-    customModelMenuView.getFloatDiv(),
-    9999,
-    true
-  );
-  doFloat.goMoveIt(doFloat);
+  const addElementInterval = setInterval(() => {
+    if (checkAvaliableElements()) {
+      clearInterval(addElementInterval);
+      document.body.appendChild(customModelMenuView.create());
+      customToggleModelViewController.setButtonEventClick();
+      const doFloat = new MakeElementFloating(
+        customModelMenuView.getFloatDiv(),
+        9999,
+        true
+      );
+      doFloat.goMoveIt(doFloat);
+    }
+  }, 1000);
 };
 
 mainScript();
