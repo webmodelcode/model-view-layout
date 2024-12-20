@@ -45,7 +45,7 @@ const eventHandler = ({
   checkAvaliableElements,
 }) => {
   if (!checkAvaliableElements()) {
-    window.alert("Some elements are not available yet.");
+    window.alert(strings.elementsNotAvailable);
     return;
   }
   customStatusPanelController.setIndicator();
