@@ -13,9 +13,17 @@ const createToggleButton = () => {
   toggleModelViewButton.classList.add("model-view-button");
   toggleModelViewButton.classList.add("toggle");
   toggleModelViewButton.innerHTML = strings.enableText;
-  // toggleModelViewButton.disabled = true;//TODO: creck activate and disable the button
 
   return toggleModelViewButton;
+};
+
+const createFloatingChatButton = () => {
+  const floatingChatButton = document.createElement("button");
+  floatingChatButton.classList.add("model-view-button");
+  floatingChatButton.classList.add("toggle");
+  floatingChatButton.innerHTML = strings.onChat;
+
+  return floatingChatButton;
 };
 
 // button to donate
@@ -67,12 +75,14 @@ const createCustomStatusPanel = () => {
 export const CustomModelMenuView = () => {
   const floatDiv = createMainFloatContainer();
   const customStatusPanel = createCustomStatusPanel();
+  const floatingChatButton = createFloatingChatButton();
   const toggleModelViewButton = createToggleButton();
   const donateButton = createDonateButton();
 
   const create = () => {
     floatDiv.appendChild(customStatusPanel.customStatusPanel);
     floatDiv.appendChild(toggleModelViewButton);
+    floatDiv.appendChild(floatingChatButton);
     floatDiv.appendChild(donateButton);
     return floatDiv;
   };
@@ -81,12 +91,14 @@ export const CustomModelMenuView = () => {
   const getCustomStatusPanel = () => customStatusPanel;
   const getToggleModelViewButton = () => toggleModelViewButton;
   const getDonateButton = () => donateButton;
+  const getFloatingChatButton = () => floatingChatButton;
 
   return {
     create,
     getFloatDiv,
     getCustomStatusPanel,
     getToggleModelViewButton,
+    getFloatingChatButton,
     getDonateButton,
   };
 };

@@ -65,6 +65,17 @@ export const getScStreamingStatus = () => {
   }
 };
 
+export const getScChatContainer = () => {
+  try {
+    return (
+      document.getElementsByClassName("BroadcastContainer__aside#AX").item(0) ||
+      null
+    );
+  } catch (error) {
+    return null;
+  }
+};
+
 export const checkAvaliableElements = () => {
   return (
     getScErrorNode() &&
@@ -72,6 +83,7 @@ export const checkAvaliableElements = () => {
     getScBroadcastWrapper() &&
     getScMemberList() &&
     getScExtSwitch() &&
+    getScChatContainer() &&
     getScStreamingStatus()
   );
 };

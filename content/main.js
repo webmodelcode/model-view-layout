@@ -3,6 +3,7 @@
 import { CustomModelMenuView } from "./custom-model-menu/view/custom-model-menu.view.js";
 import { CustomStatusPanelController } from "./custom-model-menu/controller/custom-status-panel.controller.js";
 import { CustomToggleModelViewController } from "./custom-model-menu/controller/custom-toggle-model-view.controller.js";
+import { CustonFloatChatButtonController } from "./custom-model-menu/controller/custom-float-chat-button.controller.js";
 import { MakeElementFloating } from "./utils/float-button/float-button-script.js";
 import {
   domObserver,
@@ -16,6 +17,7 @@ import {
   getScMemberList,
   getScExtSwitch,
   getScStreamingStatus,
+  getScChatContainer,
   checkAvaliableElements,
 } from "./sc-components/sc-components-getters.js";
 
@@ -38,6 +40,12 @@ const mainScript = () => {
     checkAvaliableElements,
     getScErrorNode,
   });
+  const custonFloatChatButtonController = CustonFloatChatButtonController({
+    customModelMenuView,
+    getScChatContainer,
+    checkAvaliableElements,
+    MakeElementFloating,
+  });
 
   const addElementInterval = setInterval(() => {
     if (checkAvaliableElements()) {
@@ -45,12 +53,13 @@ const mainScript = () => {
       document.body.appendChild(customModelMenuView.create());
       customStatusPanelController.setText();
       customToggleModelViewController.setButtonEventClick();
-      const doFloat = new MakeElementFloating(
+      custonFloatChatButtonController.setButtonEventClick();
+      const doFloatMainContainer = new MakeElementFloating(
         customModelMenuView.getFloatDiv(),
         9999,
         true
       );
-      doFloat.goMoveIt(doFloat);
+      doFloatMainContainer.goMoveIt(doFloatMainContainer);
     }
   }, 1000);
 };

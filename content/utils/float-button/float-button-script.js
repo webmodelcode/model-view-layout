@@ -19,7 +19,7 @@ export class MakeElementFloating {
     }
 
     function shiftProperties() {
-      ref.elm.style.position = "absolute";
+      ref.elm.style.position = "fixed";
       ref.elm.style.zIndex = ref.zIndex;
     }
 
@@ -44,8 +44,20 @@ export class MakeElementFloating {
   }
 
   goMoveIt(ref) {
-    this.elm.addEventListener("mousedown", function (e) {
+    this.elm.addEventListener("mousedown", function mousedownHandler(e) {
+      if (window.isChatFloating === false) {
+        ref.elm.removeEventListener("mousedown", mousedownHandler);
+        return;
+      }
       ref.mainMovement(e, ref);
     });
   }
+
+  // stopMoveIt(ref) {
+  //   ref.isMoving = false;
+  // }
 }
+
+const mousedownHandler = (event, ref) => {
+  ref.mainMovement(event, ref);
+};
