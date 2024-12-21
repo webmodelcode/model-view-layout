@@ -55,16 +55,15 @@ const doChatFloating = ({ customModelMenuView, floatingChatButton }) => {
   const customFloatChatButton = customModelMenuView.getFloatingChatButton();
   customFloatChatButton.innerHTML = strings.offChat;
   floatingChatButton.enable(floatingChatButton);
+  floatingChatButton.element?.classList.add("custom-floating-chat");
 };
 
-const stopChatFloating = ({
-  customModelMenuView,
-  getScChatContainer,
-  floatingChatButton,
-}) => {
+const stopChatFloating = ({ customModelMenuView, floatingChatButton }) => {
   const customFloatChatButton = customModelMenuView.getFloatingChatButton();
-  const chat = getScChatContainer();
   customFloatChatButton.innerHTML = strings.onChat;
-  chat.style = "";
   floatingChatButton.disable(floatingChatButton);
+  if (floatingChatButton.element) {
+    floatingChatButton.element.style = "";
+    floatingChatButton.element.classList.remove("custom-floating-chat");
+  }
 };
