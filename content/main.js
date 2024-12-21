@@ -4,7 +4,7 @@ import { CustomModelMenuView } from "./custom-model-menu/view/custom-model-menu.
 import { CustomStatusPanelController } from "./custom-model-menu/controller/custom-status-panel.controller.js";
 import { CustomToggleModelViewController } from "./custom-model-menu/controller/custom-toggle-model-view.controller.js";
 import { CustonFloatChatButtonController } from "./custom-model-menu/controller/custom-float-chat-button.controller.js";
-import { MakeElementFloating } from "./utils/float-button/float-button-script.js";
+import { FloatingElement } from "./utils/float-button/float-button-script.js";
 import {
   domObserver,
   domObserverConfig,
@@ -44,7 +44,7 @@ const mainScript = () => {
     customModelMenuView,
     getScChatContainer,
     checkAvaliableElements,
-    MakeElementFloating,
+    FloatingElement,
   });
 
   const addElementInterval = setInterval(() => {
@@ -54,12 +54,9 @@ const mainScript = () => {
       customStatusPanelController.setText();
       customToggleModelViewController.setButtonEventClick();
       custonFloatChatButtonController.setButtonEventClick();
-      const doFloatMainContainer = new MakeElementFloating(
-        customModelMenuView.getFloatDiv(),
-        9999,
-        true
-      );
-      doFloatMainContainer.goMoveIt(doFloatMainContainer);
+      const floatDiv = customModelMenuView.getFloatDiv();
+      const doFloatMainContainer = new FloatingElement(floatDiv, 9999, true);
+      doFloatMainContainer.enable(floatDiv);
     }
   }, 1000);
 };
