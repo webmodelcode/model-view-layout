@@ -89,15 +89,15 @@ setTimeout(() => {
     floatDiv = document.createElement("div");
     floatDiv.classList.add("float-div-container");
 
-    const doFloat = new window.MakeElementFloating(floatDiv, 9999, true);
-    doFloat.goMoveIt(doFloat);
+    const doFloat = new window.MakeElementFloating(floatDiv, 9999, true); //TODO: add this event to controller of custom-model-menu
+    doFloat.goMoveIt(doFloat); //TODO: add this event to controller of custom-model-menu
 
     toggleModelViewButton = document.createElement("button");
     toggleModelViewButton.classList.add("model-view-button");
     toggleModelViewButton.classList.add("toggle");
 
     toggleModelViewButton.innerHTML = enableMessage;
-    toggleModelViewButton.onclick = toggleModelView;
+    toggleModelViewButton.onclick = toggleModelView; //TODO: add this event to controller of custom-model-menu
 
     donateButton = document.createElement("a");
     donateButton.classList.add("model-view-button");
@@ -142,6 +142,7 @@ setTimeout(() => {
 const createCustomStatusPanel = () => {
   let originalStatusPanelText;
   try {
+    //TODO: add this event to controller of custom-model-menu
     originalStatusPanelText = document.getElementsByClassName(
       "player-panel-status-connection"
     )[0].childNodes[1].textContent;
@@ -163,6 +164,7 @@ const createCustomStatusPanel = () => {
   statusPanelIndicator.classList.add("indicator");
   statusPanelIndicator.id = "custom-status-panel-indicator";
   if (originalStatusPanelText.toLocaleLowerCase() === "live") {
+    //TODO: add this event to controller of custom-model-menu
     statusPanelIndicator.classList.add("live");
   }
 

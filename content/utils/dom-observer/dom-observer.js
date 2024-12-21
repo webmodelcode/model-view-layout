@@ -1,5 +1,5 @@
 // 1. Crear una instancia del observer
-window.domObserver = new MutationObserver((mutations) => {
+export const domObserver = new MutationObserver((mutations) => {
   mutations.forEach((mutation) => {
     // mutation.type puede ser 'childList', 'attributes' o 'characterData'
     console.log("Tipo de cambio:", mutation.type);
@@ -36,10 +36,13 @@ window.domObserver = new MutationObserver((mutations) => {
           isStatusTextNodeHidden ||
           isStatusTextElementHidden
         ) {
-          console.log("Tu Estado de conexión es: ", node.textContent);
-          document.getElementById(
-            "status-panel-text"
-          ).textContent = `${node.textContent}`;
+          const avaliblesStates = ["online", "live", "offline"];
+          if (avaliblesStates.includes(node.textContent.toLocaleLowerCase())) {
+            document.getElementById(
+              "status-panel-text"
+            ).textContent = `${node.textContent}`;
+          }
+
           if (
             node.textContent.toLocaleLowerCase() === "online" ||
             node.textContent.toLocaleLowerCase() === "live"
@@ -68,7 +71,7 @@ window.domObserver = new MutationObserver((mutations) => {
 });
 
 // 2. Configurar las opciones de observación
-window.domObserverConfig = {
+export const domObserverConfig = {
   attributes: false, // observar cambios en atributos
   childList: true, // observar cambios en hijos directos
   subtree: true, // observar cambios en todo el subárbol
