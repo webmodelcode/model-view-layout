@@ -1,7 +1,7 @@
 .float-div-container {
   position: fixed;
-  top: 10vh;
-  left: 80vw;
+  top: 3vh;
+  left: 3vw;
   padding: 1rem;
   background: rgba(255, 255, 255, 0.5);
   transition: "all 0.1s ease";
