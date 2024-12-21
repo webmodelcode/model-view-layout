@@ -3,7 +3,6 @@ export class FloatingElement {
     this.element = element;
     this.zIndex = zIndex;
     this.offset = { x: 0, y: 0 };
-    this.isActive = true;
     this.boundHandleMouseDown = this.handleMouseDown.bind(this);
     this.boundHandleMouseMove = this.handleMouseMove.bind(this);
     this.boundHandleMouseUp = this.handleMouseUp.bind(this);
@@ -44,7 +43,7 @@ export class FloatingElement {
    * @param {MouseEvent} event
    */
   handleMouseDown(event) {
-    if (!this.isActive || window.isChatFloating === false) {
+    if (!this.isActive() || window.isChatFloating === false) {
       return;
     }
 
@@ -86,7 +85,7 @@ export class FloatingElement {
    * Starts the floating behavior
    */
   enable() {
-    this.isActive = true;
+    this.element.setAttribute("isFloating", true);
     this.element.addEventListener("mousedown", this.boundHandleMouseDown);
   }
 
@@ -94,7 +93,7 @@ export class FloatingElement {
    * Stops the floating behavior
    */
   disable() {
-    this.isActive = false;
+    this.element.setAttribute("isFloating", false);
     this.element.removeEventListener("mousedown", this.boundHandleMouseDown);
   }
 
@@ -104,5 +103,9 @@ export class FloatingElement {
   destroy() {
     this.disable();
     this.handleMouseUp();
+  }
+
+  isActive() {
+    return this.element.getAttribute("isFloating") === "true";
   }
 }
