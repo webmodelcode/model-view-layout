@@ -5,7 +5,7 @@ export const CustonFloatChatButtonController = ({
   customModelMenuView,
   getScChatContainer,
   checkAvaliableElements,
-  MakeElementFloating,
+  FloatingElement,
 }) => {
   const customFloatChatButton = customModelMenuView.getFloatingChatButton();
 
@@ -15,7 +15,7 @@ export const CustonFloatChatButtonController = ({
         customModelMenuView,
         checkAvaliableElements,
         getScChatContainer,
-        MakeElementFloating,
+        FloatingElement,
       });
     };
   };
@@ -29,36 +29,42 @@ const eventHandler = ({
   customModelMenuView,
   checkAvaliableElements,
   getScChatContainer,
-  MakeElementFloating,
+  FloatingElement,
 }) => {
-  const isChatFloating = window.isChatFloating;
   const chat = getScChatContainer();
-  const floatingChatButton = new MakeElementFloating(chat, 9999, true);
+  const floatingChatButton = new FloatingElement(chat, 9999, true);
 
   if (!checkAvaliableElements()) {
     window.alert(strings.elementsNotAvailable);
     return;
   }
 
-  if (!isChatFloating) {
+  if (!floatingChatButton.isActive()) {
     doChatFloating({ customModelMenuView, floatingChatButton });
-    window.isChatFloating = true;
     return;
   }
 
-  window.isChatFloating = false;
-  stopChatFloating({ customModelMenuView, getScChatContainer });
+  stopChatFloating({
+    customModelMenuView,
+    getScChatContainer,
+    floatingChatButton,
+  });
 };
 
 const doChatFloating = ({ customModelMenuView, floatingChatButton }) => {
   const customFloatChatButton = customModelMenuView.getFloatingChatButton();
   customFloatChatButton.innerHTML = strings.offChat;
-  floatingChatButton.goMoveIt(floatingChatButton);
+  floatingChatButton.enable(floatingChatButton);
 };
 
-const stopChatFloating = ({ customModelMenuView, getScChatContainer }) => {
+const stopChatFloating = ({
+  customModelMenuView,
+  getScChatContainer,
+  floatingChatButton,
+}) => {
   const customFloatChatButton = customModelMenuView.getFloatingChatButton();
   const chat = getScChatContainer();
   customFloatChatButton.innerHTML = strings.onChat;
   chat.style = "";
+  floatingChatButton.disable(floatingChatButton);
 };
