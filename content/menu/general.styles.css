@@ -1,3 +1,8 @@
+.sct-floating-menu * {
+  margin: 0;
+  padding: 0;
+}
+
 .sct-floating-menu {
   position: fixed;
   right: 20px;
@@ -17,7 +22,8 @@
 /* Acordeón */
 .sct-accordion-btn {
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.2rem;
+  margin: 0;
   background: rgba(255, 255, 255, 0.9);
   border: none;
   cursor: pointer;
@@ -47,10 +53,14 @@
   transform: rotate(180deg);
 }
 
-.menu-content {
+.sct-menu-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   max-height: 300px; /* altura máxima cuando está abierto */
   transition: max-height 0.3s ease-in-out;
-  padding: 0.5rem;
+  padding: 0;
 }
 
 #sct-menu-toggle:checked ~ .menu-content {
@@ -92,17 +102,14 @@
   color: #22c55e;
 }
 
-.button {
+.sct-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 0.5rem;
   border: none;
   background: transparent;
   cursor: pointer;
-  margin-top: 0.5rem;
+  margin: 0;
   color: #4b5563;
   transition: all 0.2s;
   font-weight: bold;
