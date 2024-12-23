@@ -21,7 +21,10 @@ import {
   checkAvaliableElements,
 } from "./sc-components/sc-components-getters.js";
 
+import { sctMenu } from "./menu/menu.js";
+
 const mainScript = () => {
+  const menu = sctMenu();
   const customModelMenuView = CustomModelMenuView();
   const customStatusPanel = customModelMenuView.getCustomStatusPanel();
   const customStatusPanelController = CustomStatusPanelController({
@@ -46,6 +49,8 @@ const mainScript = () => {
     checkAvaliableElements,
     FloatingElement,
   });
+
+  menu.create();
 
   const addElementInterval = setInterval(() => {
     if (checkAvaliableElements()) {

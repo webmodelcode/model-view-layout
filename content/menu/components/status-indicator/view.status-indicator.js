@@ -15,7 +15,7 @@ const statusIndicatorDot = () => {
 const statusIndicatorText = () => {
   const statusIndicatorText = document.createElement("span");
   statusIndicatorText.classList.add("sct-status-text");
-  statusIndicatorText.textContent = "Loadong...";
+  statusIndicatorText.textContent = "loading...";
   return statusIndicatorText;
 };
 

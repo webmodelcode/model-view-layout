@@ -1,6 +1,6 @@
 const menuFixedContainer = () => {
   const fixedMenu = document.createElement("div");
-  container.classList.add("sct-floating-menu");
+  fixedMenu.classList.add("sct-floating-menu");
 
   return fixedMenu;
 };
