@@ -1,6 +1,7 @@
 export const btnFocusChat = () => {
   const btn = document.createElement("button");
   btn.classList.add("sct-button");
+  btn.classList.add("sct-max-height-transition");
   btn.innerHTML = svgImg;
 
   return btn;

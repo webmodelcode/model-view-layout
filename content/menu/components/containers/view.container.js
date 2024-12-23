@@ -15,7 +15,7 @@ const menuInternalContainer = () => {
 const menuContentContainer = () => {
   const contentContainer = document.createElement("div");
   contentContainer.classList.add("sct-menu-content");
-
+  contentContainer.classList.add("sct-max-height-transition");
   return contentContainer;
 };
 

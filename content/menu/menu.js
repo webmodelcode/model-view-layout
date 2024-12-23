@@ -22,8 +22,8 @@ export const sctMenu = () => {
     menu.appendChild(internalContainer);
     internalContainer.appendChild(accordion.checkBox);
     internalContainer.appendChild(accordion.label);
+    internalContainer.appendChild(statusIndicatorContainer);
     internalContainer.appendChild(contentContainer);
-    contentContainer.appendChild(statusIndicatorContainer);
     statusIndicatorContainer.appendChild(statusIndicator.dot);
     statusIndicatorContainer.appendChild(statusIndicator.text);
     contentContainer.appendChild(focusChatButton);
