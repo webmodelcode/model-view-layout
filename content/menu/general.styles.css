@@ -58,12 +58,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-height: 300px; /* altura máxima cuando está abierto */
+
   padding: 0;
 }
 
+.sct-menu-content.open {
+  max-height: 25vh;
+}
+.sct-menu-content.closed {
+  max-height: 0;
+}
+
 .sct-max-height-transition {
-  transition: max-height 0.3s ease-in-out;
+  transition: max-height 0.5s ease-in-out;
 }
 
 #sct-menu-toggle:checked ~ .menu-content {

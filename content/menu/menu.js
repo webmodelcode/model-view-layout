@@ -5,6 +5,8 @@ import { btnFocusChat } from "./components/buttons/btn-focus-chat/btn-focus-chat
 import { btnMoveChat } from "./components/buttons/btn-move-chat/btn-move-chat.view.js";
 import { btnDonate } from "./components/buttons/btn-donate/btn-donate.view.js";
 
+import { accordionController } from "./components/accordion/controller.accordion.js";
+
 export const sctMenu = () => {
   const create = () => {
     const containers = sctMenuContainers();
@@ -29,6 +31,8 @@ export const sctMenu = () => {
     contentContainer.appendChild(focusChatButton);
     contentContainer.appendChild(moveChatButton);
     contentContainer.appendChild(donateButton);
+
+    accordionController({ accordion, contentContainer });
 
     document.body.appendChild(menu);
   };
