@@ -3,7 +3,6 @@ export const btnDonate = () => {
   btn.href = "https://buymeacoffee.com/juanleon";
   btn.classList.add("sct-button");
   btn.classList.add("donate");
-  btn.classList.add("sct-max-height-transition");
   btn.innerHTML = svgImg;
 
   return btn;

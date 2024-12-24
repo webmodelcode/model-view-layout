@@ -2,7 +2,6 @@ export const btnMoveChat = () => {
   const btn = document.createElement("a");
   btn.classList.add("sct-button");
   btn.classList.add("move");
-  btn.classList.add("sct-max-height-transition");
   btn.innerHTML = svgImg;
 
   return btn;
