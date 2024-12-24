@@ -6,6 +6,16 @@ import { btnMoveChat } from "./components/buttons/btn-move-chat/btn-move-chat.vi
 import { btnDonate } from "./components/buttons/btn-donate/btn-donate.view.js";
 
 import { accordionController } from "./components/accordion/controller.accordion.js";
+import { focusChatButtonController } from "./components/buttons/btn-focus-chat/btn-focus-chat.controller.js";
+
+import {
+  getScBroadcastContainer,
+  getScBroadcastWrapper,
+  getScMemberList,
+  getScExtSwitch,
+  checkAvaliableElements,
+  getScErrorNode,
+} from "../sc-components/sc-components-getters.js";
 
 export const sctMenu = () => {
   const create = () => {
@@ -33,6 +43,13 @@ export const sctMenu = () => {
     contentContainer.appendChild(donateButton);
 
     accordionController({ accordion, contentContainer });
+    focusChatButtonController({
+      focusChatButton,
+      getScBroadcastContainer,
+      getScBroadcastWrapper,
+      getScMemberList,
+      getScExtSwitch,
+    });
 
     document.body.appendChild(menu);
   };
