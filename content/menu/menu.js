@@ -42,6 +42,8 @@ export const sctMenu = () => {
     contentContainer.appendChild(moveChatButton);
     contentContainer.appendChild(donateButton);
 
+    document.body.appendChild(menu);
+
     accordionController({ accordion, contentContainer });
     focusChatButtonController({
       focusChatButton,
@@ -50,8 +52,6 @@ export const sctMenu = () => {
       getScMemberList,
       getScExtSwitch,
     });
-
-    document.body.appendChild(menu);
   };
 
   return {
