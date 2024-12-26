@@ -15,7 +15,11 @@
   "content_scripts": [
     {
       "matches": ["https://es.stripchat.com/*"],
-      "css": ["content/content.css", "content/menu/general.styles.css"],
+      "css": [
+        "content/content.css",
+        "content/menu/general.styles.css",
+        "content/styles/sc-elements.custom.css"
+      ],
       "js": ["content/load-ext-scripts.js"],
       "run_at": "document_end"
     }
