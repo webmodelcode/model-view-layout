@@ -1,6 +1,7 @@
 export const btnDonate = () => {
   const btn = document.createElement("a");
   btn.href = "https://buymeacoffee.com/juanleon";
+  btn.target = "_blank";
   btn.classList.add("sct-button");
   btn.classList.add("donate");
   btn.innerHTML = svgImg;
