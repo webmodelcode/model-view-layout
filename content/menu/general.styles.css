@@ -131,6 +131,11 @@
   height: 2rem;
 }
 
+.sct-button.active {
+  background-color: #22c55e;
+  color: white;
+}
+
 .sct-button svg {
   max-height: inherit !important;
 }
@@ -140,6 +145,7 @@
 }
 
 .sct-button:hover {
+  color: #4b5563;
   background-color: #f3f4f6;
 }
 

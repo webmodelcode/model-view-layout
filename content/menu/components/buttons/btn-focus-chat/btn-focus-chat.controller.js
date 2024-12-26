@@ -5,14 +5,15 @@ export const focusChatButtonController = ({
   getScMemberList,
   getScExtSwitch,
 }) => {
-  focusChatButton.click = () => {
+  focusChatButton.addEventListener("click", () => {
     toggleFocusChat({
+      focusChatButton,
       getScBroadcastContainer,
       getScBroadcastWrapper,
       getScMemberList,
       getScExtSwitch,
     });
-  };
+  });
 };
 
 const enableFocusChat = ({
@@ -25,10 +26,10 @@ const enableFocusChat = ({
   const extSwitch = getScExtSwitch();
   const broadcastWrapper = getScBroadcastWrapper();
   const memberList = getScMemberList();
-  broadcastCointainer.style.flexDirection = "column-reverse";
-  broadcastWrapper.style.display = "none";
-  extSwitch.style.display = "none";
-  memberList.style.height = "70vh";
+  broadcastCointainer.classList.add("sct-flex-reverse");
+  broadcastWrapper.classList.add("sct-dnone");
+  extSwitch.classList.add("sct-dnone");
+  memberList.classList.add("sct-h-70");
 };
 
 const disableFocusChat = ({
@@ -41,13 +42,14 @@ const disableFocusChat = ({
   const extSwitch = getScExtSwitch();
   const broadcastWrapper = getScBroadcastWrapper();
   const memberList = getScMemberList();
-  broadcastCointainer.style.flexDirection = "row";
-  broadcastWrapper.style.display = "block";
-  extSwitch.style.display = "flex";
-  memberList.style.height = "100%";
+  broadcastCointainer.classList.remove("sct-flex-reverse");
+  broadcastWrapper.classList.remove("sct-dnone");
+  extSwitch.classList.remove("sct-dnone");
+  memberList.classList.remove("sct-h-70");
 };
 
 const toggleFocusChat = ({
+  focusChatButton,
   getScBroadcastContainer,
   getScBroadcastWrapper,
   getScMemberList,
@@ -55,6 +57,7 @@ const toggleFocusChat = ({
 }) => {
   const isSctFocusChat = window.isSctFocusChat || false;
   if (isSctFocusChat) {
+    focusChatButton.classList.remove("active");
     disableFocusChat({
       getScBroadcastContainer,
       getScBroadcastWrapper,
@@ -62,6 +65,7 @@ const toggleFocusChat = ({
       getScExtSwitch,
     });
   } else {
+    focusChatButton.classList.add("active");
     enableFocusChat({
       getScBroadcastContainer,
       getScBroadcastWrapper,
