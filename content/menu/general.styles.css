@@ -70,7 +70,7 @@
 }
 
 .sct-max-height-transition {
-  transition: max-height 0.5s ease-in-out;
+  transition: max-height 0.3s ease-in-out;
 }
 
 #sct-menu-toggle:checked ~ .menu-content {
@@ -82,7 +82,7 @@
 .sct-status-indicator {
   display: flex;
   align-items: center;
-  padding: 0.5rem 0.75rem;
+  padding: 0.1rem 0.75rem;
   border-bottom: 1px solid #e5e7eb;
   background: rgba(255, 255, 255, 0.6);
 }
