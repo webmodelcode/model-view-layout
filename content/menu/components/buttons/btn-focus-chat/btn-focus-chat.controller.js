@@ -1,11 +1,18 @@
+import { strings } from "../../../../utils/strings.js";
+
 export const focusChatButtonController = ({
   focusChatButton,
   getScBroadcastContainer,
   getScBroadcastWrapper,
   getScMemberList,
   getScExtSwitch,
+  checkAvaliableElements,
 }) => {
   focusChatButton.addEventListener("click", () => {
+    if (!checkAvaliableElements()) {
+      window.alert(strings.elementsNotAvailable);
+      return;
+    }
     toggleFocusChat({
       focusChatButton,
       getScBroadcastContainer,
