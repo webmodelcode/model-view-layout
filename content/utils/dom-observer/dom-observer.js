@@ -9,53 +9,6 @@ export const domObserver = new MutationObserver((mutations) => {
       mutation.addedNodes.forEach((node) => {
         let isError = isErrorNode(node);
         if (isError) location.reload();
-
-        let isStatusTextNode =
-          node.parentNode?.localName === "span" &&
-          node.parentNode?.offsetParent?.className?.includes(
-            "player-panel-status"
-          );
-        let isStatusTextNodeHidden =
-          node.parentNode?.localName === "span" &&
-          node.parentNode?.parentNode?.className?.includes(
-            "player-panel-status"
-          );
-        let isStatusTextElement =
-          node.parentElement?.localName === "span" &&
-          node.parentElement?.offsetParent?.className?.includes(
-            "player-panel-status"
-          );
-        let isStatusTextElementHidden =
-          node.parentElement?.localName === "span" &&
-          node.parentElement?.parentElement?.className?.includes(
-            "player-panel-status"
-          );
-        if (
-          isStatusTextNode ||
-          isStatusTextElement ||
-          isStatusTextNodeHidden ||
-          isStatusTextElementHidden
-        ) {
-          const avaliblesStates = ["online", "live", "offline"];
-          if (avaliblesStates.includes(node.textContent.toLocaleLowerCase())) {
-            document.getElementById(
-              "status-panel-text"
-            ).textContent = `${node.textContent}`;
-          }
-
-          if (
-            node.textContent.toLocaleLowerCase() === "online" ||
-            node.textContent.toLocaleLowerCase() === "live"
-          ) {
-            document
-              .getElementById("custom-status-panel-indicator")
-              .classList.add("live");
-          } else if (node.textContent.toLocaleLowerCase() === "offline") {
-            document
-              .getElementById("custom-status-panel-indicator")
-              .classList.remove("live");
-          }
-        }
       });
 
       // Nodos eliminados

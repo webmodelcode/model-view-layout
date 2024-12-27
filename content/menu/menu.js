@@ -1,11 +1,12 @@
 import { sctMenuContainers } from "./components/containers/view.container.js";
 import { sctMenuAccordion } from "./components/accordion/view.accordion.js";
-import { sctStatusIndicator } from "./components/status-indicator/view.status-indicator.js";
+import { sctStatusIndicator } from "./components/status-indicator/status-indicator.view.js";
 import { btnFocusChat } from "./components/buttons/btn-focus-chat/btn-focus-chat.view.js";
 import { btnMoveChat } from "./components/buttons/btn-move-chat/btn-move-chat.view.js";
 import { btnDonate } from "./components/buttons/btn-donate/btn-donate.view.js";
 
 import { accordionController } from "./components/accordion/controller.accordion.js";
+import { statusIndicatorController } from "./components/status-indicator/status-indicator.controller.js";
 import { focusChatButtonController } from "./components/buttons/btn-focus-chat/btn-focus-chat.controller.js";
 import { moveChatButtonController } from "./components/buttons/btn-move-chat/btn-move-chat.controller.js";
 
@@ -17,8 +18,13 @@ import {
   checkAvaliableElements,
   getScErrorNode,
   getScChatContainer,
+  getScStreamingStatus,
 } from "../sc-components/sc-components-getters.js";
 import { FloatingElement } from "../utils/float-button/float-button-script.js";
+import {
+  domObserver,
+  domObserverConfig,
+} from "../utils/dom-observer/dom-observer.js";
 
 export const sctMenu = () => {
   const create = () => {
@@ -48,6 +54,10 @@ export const sctMenu = () => {
     document.body.appendChild(menu);
 
     accordionController({ accordion, contentContainer });
+    statusIndicatorController({
+      statusIndicator,
+      getScStreamingStatus,
+    });
     focusChatButtonController({
       focusChatButton,
       getScBroadcastContainer,
@@ -65,7 +75,22 @@ export const sctMenu = () => {
     });
   };
 
+  observeForError({ getScErrorNode, domObserver, domObserverConfig });
+
   return {
     create,
   };
+};
+
+const observeForError = ({
+  getScErrorNode,
+  domObserver,
+  domObserverConfig,
+}) => {
+  const domErrorObserverStarted = window.sctDomErrorObserverStarted;
+  const errorNode = getScErrorNode();
+  if (errorNode && !domErrorObserverStarted) {
+    window.sctDomErrorObserverStarted = true;
+    domObserver.observe(errorNode, domObserverConfig);
+  }
 };
