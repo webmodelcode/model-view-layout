@@ -16,7 +16,6 @@
     {
       "matches": ["https://es.stripchat.com/*"],
       "css": [
-        "content/content.css",
         "content/menu/menu.styles.css",
         "content/styles/sc-elements.custom.css"
       ],

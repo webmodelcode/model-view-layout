@@ -9,3 +9,19 @@
 .sct-h-70 {
   height: 70vh !important;
 }
+
+.sct-custom-floating-chat {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 1rem;
+  border-radius: 0.3rem;
+  height: clamp(450px, 60vh, 1800px) !important;
+  width: clamp(550px, 60vw, 1080px) !important;
+  max-height: clamp(450px, 60vh, 1800px) !important;
+  max-width: clamp(550px, 60vw, 1080px) !important;
+  min-height: clamp(450px, 60vh, 1800px) !important;
+  min-width: clamp(550px, 60vw, 1080px) !important;
+  position: fixed;
+  left: 33%;
+  z-index: 9999;
+}

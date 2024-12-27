@@ -31,13 +31,13 @@ export const moveChatButtonController = ({
 
 const doChatFloating = ({ floatingChatButton }) => {
   floatingChatButton.enable(floatingChatButton);
-  floatingChatButton.element?.classList.add("custom-floating-chat");
+  floatingChatButton.element?.classList.add("sct-custom-floating-chat");
 };
 
 const stopChatFloating = ({ floatingChatButton }) => {
   floatingChatButton.disable(floatingChatButton);
   if (floatingChatButton.element) {
     floatingChatButton.element.style = "";
-    floatingChatButton.element.classList.remove("custom-floating-chat");
+    floatingChatButton.element.classList.remove("sct-custom-floating-chat");
   }
 };
