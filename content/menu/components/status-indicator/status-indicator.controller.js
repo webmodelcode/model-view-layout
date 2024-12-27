@@ -12,7 +12,7 @@ export const statusIndicatorController = ({
     } catch (error) {
       return;
     }
-  }, 1000);
+  }, 10000);
 };
 
 const setIndicatorText = ({ text, status }) => {
