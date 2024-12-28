@@ -1,51 +1,111 @@
-export class MakeElementFloating {
-  shiftX;
-  shiftY;
-
-  constructor(elm, zIndex) {
-    this.elm = elm;
+export class FloatingElement {
+  constructor(element, zIndex) {
+    this.element = element;
     this.zIndex = zIndex;
+    this.offset = { x: 0, y: 0 };
+    this.boundHandleMouseDown = this.handleMouseDown.bind(this);
+    this.boundHandleMouseMove = this.handleMouseMove.bind(this);
+    this.boundHandleMouseUp = this.handleMouseUp.bind(this);
   }
 
-  moveAt(pageX, pageY, ref) {
-    ref.elm.style.left = pageX - ref.shiftX + "px";
-    ref.elm.style.top = pageY - ref.shiftY + "px";
+  /**
+   * Updates the element's position based on mouse coordinates
+   * @param {number} x - Page X coordinate
+   * @param {number} y - Page Y coordinate
+   */
+  updatePosition(x, y) {
+    this.element.style.left = `${x - this.offset.x}px`;
+    this.element.style.top = `${y - this.offset.y}px`;
   }
 
-  mainMovement(event, ref) {
-    function initPosition(event) {
-      ref.shiftX = event.clientX - ref.elm.getBoundingClientRect().left;
-      ref.shiftY = event.clientY - ref.elm.getBoundingClientRect().top;
-    }
-
-    function shiftProperties() {
-      ref.elm.style.position = "absolute";
-      ref.elm.style.zIndex = ref.zIndex;
-    }
-
-    function onTouchmove(e) {
-      document.body.style.userSelect = "none";
-      document.body.style.overflowX = "hidden";
-      ref.moveAt(e.pageX, e.pageY, ref);
-    }
-
-    function onTouchend() {
-      document.body.style.userSelect = "auto";
-      document.body.style.overflowX = "auto";
-      document.removeEventListener("mousemove", onTouchmove);
-      initPosition();
-    }
-
-    initPosition(event);
-    shiftProperties();
-    ref.moveAt(event.pageX, event.pageY, ref);
-    document.addEventListener("mousemove", onTouchmove);
-    document.addEventListener("mouseup", onTouchend);
+  /**
+   * Calculates initial offset when dragging starts
+   * @param {MouseEvent} event
+   */
+  calculateOffset(event) {
+    const rect = this.element.getBoundingClientRect();
+    this.offset = {
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top,
+    };
   }
 
-  goMoveIt(ref) {
-    this.elm.addEventListener("mousedown", function (e) {
-      ref.mainMovement(e, ref);
-    });
+  /**
+   * Sets up the element for floating behavior
+   */
+  initializeFloatingProperties() {
+    this.element.style.position = "fixed";
+    this.element.style.zIndex = this.zIndex;
+  }
+
+  /**
+   * Handles the mousedown event
+   * @param {MouseEvent} event
+   */
+  handleMouseDown(event) {
+    if (!this.isActive() || window.isChatFloating === false) {
+      return;
+    }
+
+    this.calculateOffset(event);
+    this.initializeFloatingProperties();
+    this.updatePosition(event.pageX, event.pageY);
+
+    // Add movement and cleanup listeners
+    document.addEventListener("mousemove", this.boundHandleMouseMove);
+    document.addEventListener("mouseup", this.boundHandleMouseUp);
+
+    // Prevent text selection while dragging
+    document.body.style.userSelect = "none";
+    document.body.style.overflowX = "hidden";
+  }
+
+  /**
+   * Handles the mousemove event
+   * @param {MouseEvent} event
+   */
+  handleMouseMove(event) {
+    this.updatePosition(event.pageX, event.pageY);
+  }
+
+  /**
+   * Handles the mouseup event
+   */
+  handleMouseUp() {
+    // Remove movement listeners
+    document.removeEventListener("mousemove", this.boundHandleMouseMove);
+    document.removeEventListener("mouseup", this.boundHandleMouseUp);
+
+    // Restore default body styles
+    document.body.style.userSelect = "auto";
+    document.body.style.overflowX = "auto";
+  }
+
+  /**
+   * Starts the floating behavior
+   */
+  enable() {
+    this.element.setAttribute("isFloating", true);
+    this.element.addEventListener("mousedown", this.boundHandleMouseDown);
+  }
+
+  /**
+   * Stops the floating behavior
+   */
+  disable() {
+    this.element.setAttribute("isFloating", false);
+    this.element.removeEventListener("mousedown", this.boundHandleMouseDown);
+  }
+
+  /**
+   * Cleans up all event listeners
+   */
+  destroy() {
+    this.disable();
+    this.handleMouseUp();
+  }
+
+  isActive() {
+    return this.element.getAttribute("isFloating") === "true";
   }
 }
