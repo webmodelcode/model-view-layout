@@ -7,12 +7,14 @@ export const focusChatButtonController = ({
   getScMemberList,
   getScExtSwitch,
   checkAvaliableElements,
+  startErrorObserver,
 }) => {
   focusChatButton.addEventListener("click", () => {
     if (!checkAvaliableElements()) {
       window.alert(strings.elementsNotAvailable);
       return;
     }
+    startErrorObserver();
     toggleFocusChat({
       focusChatButton,
       getScBroadcastContainer,

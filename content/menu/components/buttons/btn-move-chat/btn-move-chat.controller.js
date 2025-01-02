@@ -5,6 +5,7 @@ export const moveChatButtonController = ({
   getScChatContainer,
   checkAvaliableElements,
   FloatingElement,
+  startErrorObserver,
 }) => {
   moveChatButton.addEventListener("click", () => {
     const chat = getScChatContainer();
@@ -14,6 +15,7 @@ export const moveChatButtonController = ({
       window.alert(strings.elementsNotAvailable);
       return;
     }
+    startErrorObserver();
 
     if (!floatingChatButton.isActive()) {
       doChatFloating({ floatingChatButton });

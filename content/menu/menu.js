@@ -40,6 +40,10 @@ export const sctMenu = () => {
     const contentContainer = containers.contentContainer;
     const statusIndicatorContainer = statusIndicator.container;
 
+    const startErrorObserver = () => {
+      observeForError({ getScErrorNode, domObserver, domObserverConfig });
+    };
+
     menu.appendChild(internalContainer);
     internalContainer.appendChild(accordion.checkBox);
     internalContainer.appendChild(accordion.label);
@@ -65,6 +69,7 @@ export const sctMenu = () => {
       getScMemberList,
       getScExtSwitch,
       checkAvaliableElements,
+      startErrorObserver,
     });
 
     moveChatButtonController({
@@ -72,10 +77,9 @@ export const sctMenu = () => {
       getScChatContainer,
       checkAvaliableElements,
       FloatingElement,
+      startErrorObserver,
     });
   };
-
-  observeForError({ getScErrorNode, domObserver, domObserverConfig });
 
   return {
     create,
